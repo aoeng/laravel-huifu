@@ -72,6 +72,7 @@ class HuiFu
             ]);
 
             $result = $response->json();
+            info('签名:', $result);
 
             //加签方法异常判断及记录
             if (!isset($result['resp_code']) || $result['resp_code'] != 'C00000') {
@@ -79,7 +80,7 @@ class HuiFu
             }
 
         } catch (\Exception $e) {
-            info("HUIFU:", $e->getMessage());
+            info("HUIFU:" . $e->getMessage());
             throw $e;
         }
 
@@ -112,7 +113,7 @@ class HuiFu
             }
 
         } catch (\Exception $e) {
-            info("HUIFU:", $e->getMessage());
+            info("HUIFU:" . $e->getMessage());
             throw $e;
         }
 
@@ -149,7 +150,7 @@ class HuiFu
             }
             return $result;
         } catch (\Exception $e) {
-            info('HUIFU:', $e->getMessage());
+            info('HUIFU:' . $e->getMessage());
             throw $e;
         }
     }
