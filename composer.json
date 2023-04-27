@@ -1,0 +1,32 @@
+{
+  "name": "aoeng/laravel-huifu",
+  "description": "汇付天下",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Aoeng\\Laravel\\Huifu\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dang",
+      "email": "859726077@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "laravel/framework": ">=8.0.4",
+    "ext-json": "*"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Aoeng\\Laravel\\Huifu\\HuifuServiceProvider"
+      ],
+      "aliases": {
+        "huifu": "Aoeng\\Laravel\\Huifu\\Facades\\Huifu"
+      }
+    }
+  }
+}
