@@ -23,9 +23,9 @@ class HuiFu
         $this->host                  = $this->test ? "https://hfpay.testpnr.com/api/" : "https://hfpay.cloudpnr.com/api/";
         $this->signHost              = $config['sign_host'] ?? 'http://localhost:8080/hfpcfca/cfca/';
         $this->merId                 = $config['mer_cust_id'] ?? null;
-        $this->pfxPassword           = $config['pfxPassword'] ?? null;
-        $this->pfxFilePath           = $config['pfxFilePath'] ?? null;
-        $this->trustedCACertFilePath = $config['trustedCACertFilePath'] ?? null;
+        $this->pfxPassword           = $config['pfx_password'] ?? null;
+        $this->pfxFilePath           = $config['pfx_file_path'] ?? null;
+        $this->trustedCACertFilePath = $config['cert_file_path'] ?? null;
         $this->bgRetUrl              = $config['bg_ret_url'] ?? null;
 
     }
@@ -63,8 +63,7 @@ class HuiFu
     {
         try {
             //调用加签方法
-            $response = Http::withHeaders(['headers' => ['Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8']])
-                ->post($this->signHost . 'makeSign', [
+            $response = Http::asForm()->post($this->signHost . 'makeSign', [
                     'data'   => json_encode([
                         'pfx_file_name' => $this->pfxFilePath,
                         'pfx_file_pwd'  => $this->pfxPassword,
@@ -99,8 +98,7 @@ class HuiFu
     {
         try {
             //调用加签方法
-            $response = Http::withHeaders(['headers' => ['Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8']])
-                ->post($this->signHost . 'verifySign', [
+            $response = Http::asForm()->post($this->signHost . 'verifySign', [
                     'params' => json_encode([
                         'cert_file'   => $this->trustedCACertFilePath,
                         'check_value' => $signature,
@@ -139,7 +137,7 @@ class HuiFu
 
             $signature = $this->signature(json_encode($param));
 
-            $response = Http::withHeaders(['headers' => ['Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8']])->post($this->host . $path, [
+            $response = Http::asForm()->post($this->host . $path, [
                 'version'     => $param['version'],
                 'mer_cust_id' => $param['mer_cust_id'],
                 'check_value' => $signature,
