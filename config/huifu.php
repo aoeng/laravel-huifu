@@ -4,15 +4,15 @@ return [
     'test'      => true,
 
     //微服务地址
-    'sign_host' => 'http://localhost:8080/hfpcfca/cfca/',
+    'sign_host' => env('HUIFU_SIGN_HOST', 'http://localhost:8080/hfpcfca/cfca/'),
 
-    'mer_cust_id' => '',
+    'mer_cust_id' => env('HUIFU_MER_CUST_ID'),
 
-    'pfx_file_path' => '',
+    'pfx_file_path' => storage_path('huifu/' . env('HUIFU_PFX_FILE_PATH', 'HF0547.pfx')),
 
-    'pfx_password' => '',
+    'pfx_password' => env('HUIFU_PFX_PASSWORD'),
 
-    'cert_file_path' => './RSA/CFCA_ACS_TEST_OCA31.cer|./RSA/CFCA_ACS_TEST_CA.cer',
+    'cert_file_path' => storage_path('huifu/' . env('HUIFU_CERT_FILE_PATH', 'CFCA_ACS_TEST_OCA31.cer')),
 
-    'bg_ret_url' => '',
+    'bg_ret_url' => env('APP_URL') . '/callback/huifu',
 ];
