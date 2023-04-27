@@ -63,13 +63,14 @@ class HuiFu
     {
         try {
             //调用加签方法
-            $response = Http::post($this->signHost . 'makeSign', [
-                'data'   => json_encode([
-                    'pfx_file_name' => $this->pfxFilePath,
-                    'pfx_file_pwd'  => $this->pfxPassword,
-                ]),
-                'params' => $strSignSourceData
-            ]);
+            $response = Http::withHeaders(['headers' => ['Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8']])
+                ->post($this->signHost . 'makeSign', [
+                    'data'   => json_encode([
+                        'pfx_file_name' => $this->pfxFilePath,
+                        'pfx_file_pwd'  => $this->pfxPassword,
+                    ]),
+                    'params' => $strSignSourceData
+                ]);
 
             $result = $response->json();
             info('签名:', $result);
@@ -98,12 +99,13 @@ class HuiFu
     {
         try {
             //调用加签方法
-            $response = Http::post($this->signHost . 'verifySign', [
-                'params' => json_encode([
-                    'cert_file'   => $this->trustedCACertFilePath,
-                    'check_value' => $signature,
-                ]),
-            ]);
+            $response = Http::withHeaders(['headers' => ['Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8']])
+                ->post($this->signHost . 'verifySign', [
+                    'params' => json_encode([
+                        'cert_file'   => $this->trustedCACertFilePath,
+                        'check_value' => $signature,
+                    ]),
+                ]);
 
             $result = $response->json();
 
