@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  * @method static orderCreate($order_date, $order_id, $user_cust_id, $trans_amt, $goods_desc, $object_info, $ret_url, $dev_info_json, $div_details = null, $div_type = 0, $order_expire_time = null, $extension = '')
  * @method static orderClose($order_date, $order_id)
  * @method static orderSearch($order_date, $order_id, $trans_type = 36)
- * @method static orderBill($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_detail, $share_fee_mode = 0, $org_trans_type = 12, $dev_info_json = null)
+ * @method static orderBill($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_details, $share_fee_mode = 0, $org_trans_type = 12, $dev_info_json = null)
+ * @method static orderRefund($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_details, $dev_info_json, $trans_type = 30)
  * @method static decodeSignature($signature)
  *
  */
