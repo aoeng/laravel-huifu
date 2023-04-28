@@ -142,16 +142,34 @@ class HuiFu
     }
 
     /**
+     * 延时分账
      * @throws Exception
      */
-    public function orderBill($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_detail, $share_fee_mode = 0, $org_trans_type = 12, $dev_info_json = null): array
+    public function orderBill($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_details, $share_fee_mode = 0, $org_trans_type = 12, $dev_info_json = null): array
     {
-        return $this->requestData('hfpay/pay006',array_filter(compact(
+        is_array($dev_info_json) && $dev_info_json = json_encode($dev_info_json);
+        is_array($div_details) && $div_details = json_encode($div_details);
+
+        return $this->requestData('hfpay/pay006', array_filter(compact(
             'order_date', 'order_id', 'org_order_id', 'org_order_date', 'trans_amt',
-            'div_detail', 'share_fee_mode', 'org_trans_type','dev_info_json'
+            'div_details', 'share_fee_mode', 'org_trans_type', 'dev_info_json'
         )));
     }
 
+    /**
+     * 退款
+     * @throws Exception
+     */
+    public function orderRefund($order_date, $order_id, $org_order_id, $org_order_date, $trans_amt, $div_details, $dev_info_json, $trans_type = 30): array
+    {
+        is_array($dev_info_json) && $dev_info_json = json_encode($dev_info_json);
+        is_array($div_details) && $div_details = json_encode($div_details);
+
+        return $this->requestData('hfpay/reb001', array_filter(compact(
+            'order_date', 'order_id', 'org_order_id', 'org_order_date', 'trans_amt',
+            'div_details', 'trans_type', 'dev_info_json'
+        )));
+    }
 
     /**
      * 加签方法
