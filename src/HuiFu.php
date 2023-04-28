@@ -111,6 +111,10 @@ class HuiFu
     public function orderCreate($order_date, $order_id, $user_cust_id, $trans_amt, $goods_desc, $object_info, $ret_url,
                                 $dev_info_json, $div_details = null, $div_type = 0, $order_expire_time = null, $extension = ''): array
     {
+        is_array($object_info) && $object_info = json_encode($object_info);
+        is_array($dev_info_json) && $dev_info_json = json_encode($dev_info_json);
+        is_array($div_details) && $div_details = json_encode($div_details);
+
         return $this->requestData('hfpwallet/pay033', array_filter(array_merge(compact(
             'order_date', 'order_id', 'user_cust_id', 'trans_amt', 'goods_desc', 'object_info', 'ret_url',
             'dev_info_json', 'div_details', 'div_type', 'order_expire_time', 'extension'

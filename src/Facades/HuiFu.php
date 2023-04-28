@@ -5,7 +5,7 @@ namespace Aoeng\Laravel\Huifu\Facades;
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
 /**
- * @method static walletOpen($order_date, $order_id, $user_name, $id_card, $user_id, $market_type = 2, $acct_usage_type = 'wallet', $id_card_type = 10)
+ * @method static walletOpen($order_date, $order_id, $user_name, $id_card, $user_id,$ret_url, $market_type = 2, $acct_usage_type = 'wallet', $id_card_type = 10)
  * @method static walletManage($order_date, $order_id, $user_id, $ret_url, $extension = '')
  * @method static walletSearch($order_date, $order_id, $trans_type = 8)
  * @method static walletStatus($user_id)
