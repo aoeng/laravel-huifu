@@ -191,7 +191,6 @@ class HuiFu
             ]);
 
             $result = $response->json();
-            info('签名:', $result);
 
             //加签方法异常判断及记录
             if (!isset($result['resp_code']) || $result['resp_code'] != 'C00000') {
@@ -262,8 +261,8 @@ class HuiFu
 
             $result = $this->decodeSignature($response->json('check_value'));
 
-            if (!isset($result['resp_code']) || $result['resp_code'] != 'C00000') {
-                throw new Exception("调用失败:" . $result['resp_desc'] ?? '');
+            if (!isset($result['resp_code'])) {
+                throw new Exception("调用失败:返回格式错误");
             }
             return $result;
         } catch (Exception $e) {
