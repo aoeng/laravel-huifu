@@ -172,6 +172,19 @@ class HuiFu
     }
 
     /**
+     * 下载对账文件
+     * @bodyParam page int required Page
+     * @param $file_date
+     * @param $file_type
+     * @return array
+     * @throws Exception
+     */
+    public function downloadFile($file_date, $file_type): array
+    {
+        return $this->requestData('alse/file02', array_filter(compact('file_date', 'file_type')));
+    }
+
+    /**
      * 加签方法
      *
      * @param $strSignSourceData   string 加签原串
